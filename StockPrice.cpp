@@ -6,14 +6,17 @@ using namespace std;
 
 vector<int> solution(vector<int> prices) {
     vector<int> answer;
-    vector<unique_ptr<int[]>> arrVector;
-    int priceSize = prices.size();
     int loopLen = 0;
-    unique_ptr<unique_ptr<int>[]> arr = make_unique<unique_ptr<int>[]>(priceSize);
 
-    for(int p = 0; p < priceSize; p++)
+    for(int p = 0; p < prices.size(); p++)
     {
-        arr[p] = make_unique<int>(priceSize);
+        answer.push_back(0);
+        int answerEndIndex = answer.size() - 1;
+        for(int i = p + 1 ; i < prices.size(); i++)
+        {
+            answer[answerEndIndex]++;
+            if(prices[p] > prices[i]) break;
+        }
     }
 
     return answer;
